@@ -1,1 +1,1 @@
-export * from './pg-client';
+export * from './pg-client.v2';

@@ -1,16 +1,13 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "module": "commonjs", 
-    "lib": ["es5", "es2015", "es2015.collection"],
+    "outDir": "lib",
+    "esModuleInterop": true,   
     "declaration": true,
     "declarationMap": true,
-    "sourceMap": true,
-    "outDir": "lib",
+    "sourceMap": true, 
     "strict": false,
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },

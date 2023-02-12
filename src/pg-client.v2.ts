@@ -1,7 +1,7 @@
-import { Service } from "typedi";
-import { Pool } from "pg";
+import { Inject, Service } from "typedi";
+import { Pool, Client } from "pg";
 
-export type Config = {
+type Config = {
     user: string
     host: string,
     database: string,
@@ -18,8 +18,22 @@ export type Config = {
 export class Database {
     private pool: Pool;
 
-    constructor(config: Config) {
-        this.pool = new Pool(config);
+    constructor(
+        @Inject("databaseConfig") private databaseConfig: {
+            host: string;
+            port: number;
+            database: string;
+            user: string;
+            password: string;
+
+        }) {
+        this.pool = new Pool({
+            host: this.databaseConfig.host,
+            port: this.databaseConfig.port,
+            database: this.databaseConfig.database,
+            user: this.databaseConfig.user,
+            password: this.databaseConfig.password
+        });
     }
 
     public async connect() {
@@ -53,7 +67,7 @@ export class Database {
             throw error
         }
 
-    }    
+    }  
 }
 
 
